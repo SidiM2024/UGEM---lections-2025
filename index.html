@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>العد التنازلي لانتخابات UGEM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- إضافة أيقونات Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/progressbar.js/1.1.0/progressbar.min.js"></script>
+    <style>
+        body {
+            background: linear-gradient(45deg, #0f2027, #203a43, #2c5364);
+            color: white;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .logo {
+            width: 80px; /* تحديد عرض الشعار */
+            height: 80px; /* تحديد ارتفاع الشعار ليكون مربعًا في البداية */
+            margin-right: 15px; /* المسافة بين الشعار والنص */
+            border-radius: 50%; /* جعل الشعار دائريًا */
+            object-fit: cover; /* جعل الصورة تملأ الدائرة بشكل مناسب */
+        }
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        .circle-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+        }
+        .circle {
+            width: 100%;
+            height: 100%;
+        }
+        .countdown-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .about {
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        .candidates {
+            margin-top: 50px;
+            text-align: center;
+        }
+        .candidates h2 {
+            margin-bottom: 20px;
+        }
+        .candidates-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .candidate {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            width: 180px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .candidate:hover {
+            transform: scale(1.1);
+        }
+        .candidate img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        /* تصميم القسم بشكل جذاب واحترافي */
+.video-section {
+    margin: 40px auto;
+    padding: 30px;
+    max-width: 900px;
+    background: linear-gradient(135deg, #f1f1f1, #e0e0e0);
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.video-title h2 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    font-family: 'Helvetica Neue', sans-serif;
+}
+
+.video-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.video-player {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.video-player:hover {
+    transform: scale(1.05);
+}
+
+/* تأثير متجاوب */
+@media (max-width: 768px) {
+    .video-title h2 {
+        font-size: 22px;
+        margin-bottom: 15px;
+    }
+
+    .video-section {
+        padding: 20px;
+    }
+}
+
+/* تعديل محاذاة النص إلى الجهة اليمنى */
+.contact-activists {
+    background: linear-gradient(135deg, #2c3e50, #3498db); /* خلفية متدرجة */
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    max-width: 850px;
+    margin: 0 auto;
+    text-align: right; /* تغيير محاذاة النص إلى اليمين */
+    transition: transform 0.3s ease;
+}
+
+.contact-activists h2 {
+    color: #fff;
+    font-size: 30px;
+    font-family: 'Arial', sans-serif;
+    margin-bottom: 25px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* تنسيق الأيقونات والعناصر داخل قسم تواصل مع المناضلين */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* محاذاة العناصر إلى اليمين */
+}
+
+.contact-item {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* محاذاة الأيقونة والنص إلى اليمين */
+}
+
+.contact-item i {
+    font-size: 30px;
+    color: #fff;
+    margin-left: 15px; /* محاذاة الأيقونة إلى اليسار بالنسبة للنص */
+    transition: color 0.3s ease;
+}
+
+.contact-item p {
+    color: #fff;
+    font-size: 18px;
+    margin-left: 10px;
+    text-align: right; /* محاذاة النص إلى اليمين */
+}
+
+.contact-item input {
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    margin-top: 5px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.contact-item input:focus {
+    border: 1px solid #2ecc71;
+    box-shadow: 0 0 10px rgba(46, 204, 113, 0.6);
+}
+
+.submit-btn {
+    background-color: #2ecc71;
+    color: #fff;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #3498db;
+    transform: scale(1.05);
+}
+
+/* استجابة للجهاز المحمول */
+@media (max-width: 768px) {
+    .contact-item input, .submit-btn {
+        font-size: 14px;
+    }
+
+    .contact-activists {
+        padding: 20px;
+    }
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="logo.jpg" class="logo" alt="شعار UGEM">
+        <h1>الاتحاد العام UGEM</h1>
+    </div>
+
+    <div class="container animate__animated animate__fadeIn">
+        <h2>العد التنازلي للانتخابات</h2>
+        <div class="countdown-container">
+            <div class="circle-container">
+                <div id="days-circle" class="circle"></div>
+                <div class="countdown-text" id="days-text"></div>
+            </div>
+            <div class="circle-container">
+                <div id="hours-circle" class="circle"></div>
+                <div class="countdown-text" id="hours-text"></div>
+            </div>
+            <div class="circle-container">
+                <div id="minutes-circle" class="circle"></div>
+                <div class="countdown-text" id="minutes-text"></div>
+            </div>
+            <div class="circle-container">
+                <div id="seconds-circle" class="circle"></div>
+                <div class="countdown-text" id="seconds-text"></div>
+            </div>
+        </div>
+        
+        <div class="candidates">
+            <h2>المترشحون</h2>
+            <div class="candidates-container">
+                <div class="candidate">
+                    <img src="poto1.jpg" alt="مرشح 1">
+                    <h5>مرشح 1</h5>
+                </div>
+                <div class="candidate">
+                    <img src="po2.jpg" alt="مرشح 2">
+                    <h5>مرشح 2</h5>
+                </div>
+                <div class="candidate">
+                    <img src="po3.jpg" alt="مرشح 3">
+                    <h5>مرشح 3</h5>
+                </div>
+                <div class="candidate">
+                    <img src="po4.jpg" alt="مرشح 4">
+                    <h5>مرشح 4</h5>
+                </div>
+                <div class="candidate">
+                    <img src="pto5.jpg" alt="مرشح 5">
+                    <h5>مرشح 5</h5>
+                </div>
+                <div class="candidate">
+                    <img src="po6.jpg" alt="مرشح 5">
+                    <h5>مرشح 6</h5>
+                </div>
+                <div class="candidate">
+                    <img src="po7.jpg" alt="مرشح 5">
+                    <h5>مرشح 7</h5>
+                </div>
+                <div class="candidate">
+                    <img src="po8.jpg" alt="مرشح 5">
+                    <h5>مرشح 8</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="video-section">
+            <div class="video-title">
+                <h2>كيفية التصويت</h2>
+            </div>
+            <div class="video-wrapper">
+                <video class="video-player" controls>
+                    <source src="VID.mp4" type="video/mp4">
+                    متصفحك لا يدعم تشغيل الفيديو.
+                </video>
+            </div>
+        </div>
+
+        <!-- قسم تواصل مع المناضلين -->
+<div class="contact-activists">
+    <h2>تواصل مع المناضلين</h2>
+    <div class="contact-form">
+        <div class="contact-item">
+            <i class="fas fa-user"></i>
+            <p>الاسم الكامل:</p>
+            <input type="text" id="full-name" placeholder="أدخل اسمك الكامل">
+        </div>
+        <div class="contact-item">
+            <i class="fas fa-university"></i>
+            <p>الكلية:</p>
+            <input type="text" id="faculty" placeholder="أدخل الكلية">
+        </div>
+        <div class="contact-item">
+            <i class="fas fa-book"></i>
+            <p>التخصص:</p>
+            <input type="text" id="specialization" placeholder="أدخل التخصص">
+        </div>
+        <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <p>رقم الهاتف:</p>
+            <input type="tel" id="phone" placeholder="أدخل رقم هاتفك">
+        </div>
+        <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <p>مكان السكن:</p>
+            <input type="text" id="address" placeholder="أدخل مكان سكنك">
+        </div>
+    </div>
+    <button class="submit-btn" onclick="submitForm()">إرسال</button>
+</div>
+
+
+    
+    <script>
+        function createCountdownCircle(id, value, maxValue) {
+            var bar = new ProgressBar.Circle(id, {
+                strokeWidth: 6,
+                easing: 'easeInOut',
+                duration: 1400,
+                color: '#ffcc00',
+                trailColor: '#444',
+                trailWidth: 6,
+                svgStyle: null
+            });
+            bar.animate(value / maxValue);
+            return bar;
+        }
+        
+        function updateCountdown() {
+            const targetDate = new Date("2025-02-27T00:00:00").getTime();
+            const now = new Date().getTime();
+            const timeLeft = targetDate - now;
+            if (timeLeft <= 0) {
+                document.querySelector(".countdown-container").innerHTML = "انتهى الوقت!";
+                return;
+            }
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            document.getElementById("days-text").innerText = days + " يوم";
+            document.getElementById("hours-text").innerText = hours + " ساعة";
+            document.getElementById("minutes-text").innerText = minutes + " دقيقة";
+            document.getElementById("seconds-text").innerText = seconds + " ثانية";
+
+            daysCircle.animate(days / 30);
+            hoursCircle.animate(hours / 24);
+            minutesCircle.animate(minutes / 60);
+            secondsCircle.animate(seconds / 60);
+        }
+        
+        const daysCircle = createCountdownCircle("#days-circle", 0, 30);
+        const hoursCircle = createCountdownCircle("#hours-circle", 0, 24);
+        const minutesCircle = createCountdownCircle("#minutes-circle", 0, 60);
+        const secondsCircle = createCountdownCircle("#seconds-circle", 0, 60);
+        
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+     // دالة لإرسال البيانات إلى 6 أرقام واتساب
+function submitForm() {
+    var name = document.getElementById('full-name').value;
+    var faculty = document.getElementById('faculty').value;
+    var specialization = document.getElementById('specialization').value;
+    var phone = document.getElementById('phone').value;
+    var address = document.getElementById('address').value;
+
+    var message = `اسم كامل: ${name}\nكلية: ${faculty}\nتخصص: ${specialization}\nرقم الهاتف: ${phone}\nمكان السكن: ${address}`;
+
+    // الأرقام التي ستستقبل البيانات عبر واتساب
+    var phoneNumbers = [
+        '30647036', // الرقم الأول
+        '48641433', // الرقم الثاني
+        '48141375', // الرقم الثالث
+        '33232419', // الرقم الرابع
+        '31262707', // الرقم الخامس
+        '42180465'  // الرقم السادس
+    ];
+
+    // فتح رابط الواتساب لكل رقم من الأرقام
+    phoneNumbers.forEach(function(number) {
+        var whatsappURL = `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
+        window.open(whatsappURL, '_blank');
+    });
+}
+  
+    </script>
+</body>
+</html>
