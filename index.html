@@ -91,61 +91,64 @@
             width: 100%;
             border-radius: 10px;
         }
-        /* تصميم القسم بشكل جذاب واحترافي */
-.video-section {
-    margin: 40px auto;
-    padding: 30px;
-    max-width: 900px;
-    background: linear-gradient(135deg, #f1f1f1, #e0e0e0);
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.video-section:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-}
-
-.video-title h2 {
-    font-size: 28px;
-    font-weight: 600;
-    color: #333;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
-    font-family: 'Helvetica Neue', sans-serif;
-}
-
-.video-wrapper {
+    /* حاوية الفيديو */
+.video-container {
     position: relative;
-    overflow: hidden;
-    border-radius: 10px;
-}
-
-.video-player {
     width: 100%;
-    height: auto;
-    border-radius: 10px;
-    transition: transform 0.3s ease;
+    max-width: 700px;
+    margin: 20px auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-.video-player:hover {
-    transform: scale(1.05);
+/* الفيديو نفسه */
+.video-container video {
+    width: 100%;
+    display: block;
+    border-radius: 12px;
 }
 
-/* تأثير متجاوب */
-@media (max-width: 768px) {
-    .video-title h2 {
-        font-size: 22px;
-        margin-bottom: 15px;
+/* زر التشغيل في المنتصف */
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 50px;
+    color: white;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.8;
+}
+
+/* تأثير عند التمرير فوق زر التشغيل */
+.play-button:hover {
+    opacity: 1;
+}
+
+/* إخفاء زر التشغيل عند بدء الفيديو */
+.video-container video.playing + .play-button {
+    display: none;
+}
+
+/* تصميم متجاوب للهاتف */
+@media (max-width: 600px) {
+    .video-container {
+        max-width: 90%;
     }
-
-    .video-section {
-        padding: 20px;
+    .play-button {
+        font-size: 40px;
+        padding: 15px;
     }
 }
+ 
 
 /* تعديل محاذاة النص إلى الجهة اليمنى */
 .contact-activists {
@@ -306,16 +309,12 @@
             </div>
         </div>
 
-        <div class="video-section">
-            <div class="video-title">
-                <h2>كيفية التصويت</h2>
-            </div>
-            <div class="video-wrapper">
-                <video class="video-player" controls>
-                    <source src="VID.mp4" type="video/mp4">
-                    متصفحك لا يدعم تشغيل الفيديو.
-                </video>
-            </div>
+       <div class="video-container">
+            <video id="myVideo" controls preload="none" poster="yahya.jpg">
+                <source src="VID.mp4" type="video/mp4">
+                متصفحك لا يدعم تشغيل الفيديو.
+            </video>
+            <div class="play-button" id="playButton">▶</div>
         </div>
 
         <!-- قسم تواصل مع المناضلين -->
@@ -415,6 +414,26 @@ function submitForm() {
     // فتح رابط الواتساب مع النص المعبأ
     window.open(whatsappURL, '_blank');
 }
+
+ document.addEventListener("DOMContentLoaded", function () {
+    let video = document.getElementById("myVideo");
+    let playButton = document.getElementById("playButton");
+
+    playButton.addEventListener("click", function () {
+        video.play();
+        video.classList.add("playing");
+    });
+
+    video.addEventListener("play", function () {
+        playButton.style.display = "none";
+    });
+
+    video.addEventListener("pause", function () {
+        playButton.style.display = "flex";
+    });
+});
+       
+        
   
     </script>
 </body>
