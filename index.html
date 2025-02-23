@@ -198,95 +198,132 @@
     }
 }
 
-
-/* تعديل محاذاة النص إلى الجهة اليمنى */
+/* تصميم القسم بشكل عام */
 .contact-activists {
-    background: linear-gradient(135deg, #2c3e50, #3498db); /* خلفية متدرجة */
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    max-width: 850px;
-    margin: 0 auto;
-    text-align: right; /* تغيير محاذاة النص إلى اليمين */
-    transition: transform 0.3s ease;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    padding: 40px 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin: 40px auto;
+    width: 90%;
+    max-width: 800px;
+    text-align: right;
+    transform: translateX(30px);
+    opacity: 0;
+    animation: slideInRight 1s forwards;
+}
+
+/* تأثير دخول الديناميكي من اليمين */
+@keyframes slideInRight {
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
 .contact-activists h2 {
-    color: #fff;
-    font-size: 30px;
-    font-family: 'Arial', sans-serif;
-    margin-bottom: 25px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}
-
-/* تنسيق الأيقونات والعناصر داخل قسم تواصل مع المناضلين */
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end; /* محاذاة العناصر إلى اليمين */
-}
-
-.contact-item {
+    font-size: 28px;
     margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end; /* محاذاة الأيقونة والنص إلى اليمين */
-}
-
-.contact-item i {
-    font-size: 30px;
-    color: #fff;
-    margin-left: 15px; /* محاذاة الأيقونة إلى اليسار بالنسبة للنص */
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
     transition: color 0.3s ease;
 }
 
+/* تصميم النموذج */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-right: 40px;
+}
+
+/* تصميم العناصر في النموذج */
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    justify-content: flex-start;
+}
+
+.contact-item i {
+    font-size: 24px;
+    color: #ffcc00;
+    flex-shrink: 0;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+    width: 100%;
+}
+
 .contact-item p {
-    color: #fff;
-    font-size: 18px;
-    margin-left: 10px;
-    text-align: right; /* محاذاة النص إلى اليمين */
+    font-size: 16px;
+    color: #f2f2f2;
+    margin: 0;
+    font-weight: 500;
 }
 
 .contact-item input {
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 10px;
     padding: 10px;
-    border-radius: 8px;
-    border: none;
+    width: 100%;
     font-size: 16px;
-    margin-top: 5px;
-    outline: none;
-    transition: all 0.3s ease;
+    transition: border-color 0.3s ease;
+    text-align: right;
 }
 
 .contact-item input:focus {
-    border: 1px solid #2ecc71;
-    box-shadow: 0 0 10px rgba(46, 204, 113, 0.6);
+    border-color: #ffcc00;
+    outline: none;
 }
 
+/* تصميم الزر */
 .submit-btn {
-    background-color: #2ecc71;
-    color: #fff;
-    padding: 15px 30px;
+    background: #ffcc00;
+    color: #1e3c72;
+    padding: 12px 30px;
+    font-size: 18px;
+    font-weight: 600;
     border: none;
-    border-radius: 50px;
-    font-size: 20px;
+    border-radius: 30px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    display: block;
+    margin: 30px auto 0;
 }
 
 .submit-btn:hover {
-    background-color: #3498db;
-    transform: scale(1.05);
+    background: #ff9900;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
 }
 
-/* استجابة للجهاز المحمول */
-@media (max-width: 768px) {
-    .contact-item input, .submit-btn {
+/* تأثيرات التفاعل مع الحقول */
+.contact-item input:focus {
+    box-shadow: 0 0 5px rgba(255, 204, 0, 0.5);
+}
+
+/* استجابة للأجهزة المحمولة */
+@media (max-width: 600px) {
+    .contact-activists h2 {
+        font-size: 24px;
+    }
+
+    .contact-item p {
         font-size: 14px;
     }
 
-    .contact-activists {
-        padding: 20px;
+    .submit-btn {
+        font-size: 16px;
+        padding: 10px 20px;
     }
 }
 
