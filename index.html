@@ -400,7 +400,7 @@
         updateCountdown();
         setInterval(updateCountdown, 1000);
 
-     // دالة لإرسال البيانات إلى 6 أرقام واتساب
+      // دالة لإرسال البيانات إلى الواتساب
 function submitForm() {
     var name = document.getElementById('full-name').value;
     var faculty = document.getElementById('faculty').value;
@@ -410,21 +410,10 @@ function submitForm() {
 
     var message = `اسم كامل: ${name}\nكلية: ${faculty}\nتخصص: ${specialization}\nرقم الهاتف: ${phone}\nمكان السكن: ${address}`;
 
-    // الأرقام التي ستستقبل البيانات عبر واتساب
-    var phoneNumbers = [
-        '30647036', // الرقم الأول
-        '48641433', // الرقم الثاني
-        '48141375', // الرقم الثالث
-        '33232419', // الرقم الرابع
-        '31262707', // الرقم الخامس
-        '42180465'  // الرقم السادس
-    ];
+    var whatsappURL = `https://wa.me/48141375?text=${encodeURIComponent(message)}`;
 
-    // فتح رابط الواتساب لكل رقم من الأرقام
-    phoneNumbers.forEach(function(number) {
-        var whatsappURL = `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
-        window.open(whatsappURL, '_blank');
-    });
+    // فتح رابط الواتساب مع النص المعبأ
+    window.open(whatsappURL, '_blank');
 }
   
     </script>
